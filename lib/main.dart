@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(),
         body: Center(
-          child: Text("start"),
+          child: Text("start update"),
         ),
       ),
     );
