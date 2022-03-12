@@ -15,7 +15,12 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(),
         body: Center(
-          child: Text("start update5"),
+          child: Column(
+            children: [
+              Text("start update5"),
+              Text("하동우: 테스트해봅니다."),
+            ],
+          ),
         ),
       ),
     );
