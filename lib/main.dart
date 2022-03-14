@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
             children: [
               Text("start update5"),
               Text("하동우: 테스트해봅니다."),
+              Text("하동우: 'dongwoo' 브랜치를 만들어보았습니다."),
             ],
           ),
         ),
