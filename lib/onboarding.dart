@@ -17,7 +17,135 @@ class Onboarding extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Text("onboarding"),
+              Text("당신의 MBTI를 알려주세요"),
+              TextField(),
+              TextButton(
+                onPressed: () {},
+                child: Text("MBTI 결과를 모르시나요?"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => OnboardingRecommendMBTI()),
+                  );
+                },
+                child: Text("다음"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OnboardingRecommendMBTI extends StatelessWidget {
+  const OnboardingRecommendMBTI({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Text("ㅇㅇㅇ와 가장 잘맞는 궁합이예요"),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => OnboardingNickname()),
+                  );
+                },
+                child: Text("다음"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OnboardingNickname extends StatelessWidget {
+  const OnboardingNickname({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Text("앞으로 사용할 별명을 입력해주세요."),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => OnboardingIntoduction()),
+                  );
+                },
+                child: Text("다음"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OnboardingIntoduction extends StatelessWidget {
+  const OnboardingIntoduction({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Text("간단하게 소개해주세요."),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => OnboardingWelcome()),
+                  );
+                },
+                child: Text("다음"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OnboardingWelcome extends StatelessWidget {
+  const OnboardingWelcome({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            children: [
+              Text("Welcome"),
+              ElevatedButton(
+                onPressed: () {
+                  // 메인으로 넘어갑니다.
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (_) => OnboardingWelcome()),
+                  // );
+                },
+                child: Text("다음"),
+              ),
             ],
           ),
         ),
