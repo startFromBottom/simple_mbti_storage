@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:simple_mbti_store/onboarding.dart';
 
 // <<<<<<< HEAD
+// >>>>>>> 9517b629bae855345694bbc4d244e389135618bf
+
 // MBTI class를 하나 만들어두면 편하겠네요.
 // MBTI, 속성
 // (예시)
@@ -13,7 +15,6 @@ import 'package:simple_mbti_store/onboarding.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // main 함수에서 async 사용하기 위함
   await Firebase.initializeApp(); // firebase 앱 시작
-// >>>>>>> 9517b629bae855345694bbc4d244e389135618bf
   runApp(const MyApp());
 }
 
