@@ -8,20 +8,36 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Center(
+      home: AppListPage(),
+    );
+  }
+}
+
+class AppListPage extends StatelessWidget {
+  const AppListPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
           child: Column(
             children: [
-              ElevatedButton(onPressed: () {}, child: Text("Onboarding")),
-              ElevatedButton(onPressed: () {}, child: Text("Login")),
-              ElevatedButton(onPressed: () {}, child: Text("Main")),
-              ElevatedButton(onPressed: () {}, child: Text("My Page")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => Onboarding()),
+                    );
+                  },
+                  child: Text("onboading")),
+              ElevatedButton(onPressed: () {}, child: Text("login")),
+              ElevatedButton(onPressed: () {}, child: Text("main")),
+              ElevatedButton(onPressed: () {}, child: Text("my page")),
             ],
           ),
         ),
