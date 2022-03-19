@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_mbti_store/onboarding.dart';
 // MBTI class를 하나 만들어두면 편하겠네요.
@@ -13,7 +13,7 @@ import 'package:simple_mbti_store/onboarding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // main 함수에서 async 사용하기 위함
-  await Firebase.initializeApp(); // firebase 앱 시작
+  // await Firebase.initializeApp(); // firebase 앱 시작
 
   runApp(const MyApp());
 }
