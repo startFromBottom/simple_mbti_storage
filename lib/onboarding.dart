@@ -4,36 +4,169 @@
 
 import 'package:flutter/material.dart';
 
-class Onboarding extends StatelessWidget {
+String myMBTI = "test";
+
+class Onboarding extends StatefulWidget {
   const Onboarding({Key? key}) : super(key: key);
 
+  @override
+  State<Onboarding> createState() => _OnboardingState();
+}
+
+class _OnboardingState extends State<Onboarding> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(),
-        body: Center(
-          child: Column(
-            children: [
-              Text("당신의 MBTI를 알려주세요"),
-              TextField(),
-              TextButton(
-                onPressed: () {},
-                child: Text("MBTI 결과를 모르시나요?"),
+    double mbtiBoxSize = MediaQuery.of(context).size.width * 0.25;
+
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 48,
+            ),
+            Text(
+              "당신의 MBTI를 알려주세요.",
+              style: TextStyle(
+                fontSize: 24,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => OnboardingRecommendMBTI()),
-                  );
-                },
-                child: Text("다음"),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text("당신의 MBTI를 모르시나요?"),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: SizedBox(
+                height: mbtiBoxSize * 4 - 32,
+                width: mbtiBoxSize * 4 - 32,
+                child: GridView(
+                    padding: EdgeInsets.zero,
+                    physics: NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 4,
+                      crossAxisSpacing: 4,
+                      childAspectRatio: 1,
+                    ),
+                    children: [
+                      mbtiBox("INTJ", mbtiBoxSize, Colors.purple, Colors.white),
+                      mbtiBox("INTP", mbtiBoxSize, Colors.purple, Colors.white),
+                      mbtiBox("ENTJ", mbtiBoxSize, Colors.purple, Colors.white),
+                      mbtiBox("ENTP", mbtiBoxSize, Colors.purple, Colors.white),
+                      mbtiBox("INFJ", mbtiBoxSize, Colors.green, Colors.white),
+                      mbtiBox("INFP", mbtiBoxSize, Colors.green, Colors.white),
+                      mbtiBox("ENFJ", mbtiBoxSize, Colors.green, Colors.white),
+                      mbtiBox("ENFP", mbtiBoxSize, Colors.green, Colors.white),
+                      mbtiBox(
+                          "ISTJ", mbtiBoxSize, Colors.lightBlue, Colors.white),
+                      mbtiBox(
+                          "ISFJ", mbtiBoxSize, Colors.lightBlue, Colors.white),
+                      mbtiBox(
+                          "ESTJ", mbtiBoxSize, Colors.lightBlue, Colors.white),
+                      mbtiBox(
+                          "ESFJ", mbtiBoxSize, Colors.lightBlue, Colors.white),
+                      mbtiBox("ISTP", mbtiBoxSize, Colors.amber, Colors.white),
+                      mbtiBox("ISFP", mbtiBoxSize, Colors.amber, Colors.white),
+                      mbtiBox("ESTP", mbtiBoxSize, Colors.amber, Colors.white),
+                      mbtiBox("ESFP", mbtiBoxSize, Colors.amber, Colors.white),
+                    ]),
               ),
-            ],
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 16,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.65,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "당신은 $myMBTI이군요!",
+                              style: TextStyle(
+                                fontSize: 24,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Text("(예시)상상력이 풍부하여 철두철미한 계획을 세우는 전략가형",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                )),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => OnboardingRecommendMBTI()),
+                            );
+                          },
+                          child: Text("다음"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget mbtiBox(String mbti, double size, Color colorBox, colorText) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          myMBTI = mbti;
+          // print(myMBTI);
+        });
+      },
+      child: Container(
+        width: size,
+        height: size,
+        color: colorBox,
+        child: Center(
+          child: Text(
+            mbti,
+            style: TextStyle(
+              color: colorText,
+              fontSize: 24,
+              // fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),
