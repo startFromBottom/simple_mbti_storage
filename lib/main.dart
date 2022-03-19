@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_mbti_store/onboarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +18,10 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Text("start update5"),
-              Text("하동우: 테스트해봅니다."),
+              ElevatedButton(onPressed: () {}, child: Text("Onboarding")),
+              ElevatedButton(onPressed: () {}, child: Text("Login")),
+              ElevatedButton(onPressed: () {}, child: Text("Main")),
+              ElevatedButton(onPressed: () {}, child: Text("My Page")),
             ],
           ),
         ),
