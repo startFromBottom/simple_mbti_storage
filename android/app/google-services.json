@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1057078833902",
+    "project_id": "mbti-com",
+    "storage_bucket": "mbti-com.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057078833902:android:41befe815dc1799cf839ff",
+        "android_client_info": {
+          "package_name": "com.example.simple_mbti_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057078833902-q9ooqib7i1ed85b5uld8hbma4803f3uh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8irY43_Hlb3IvsjM-QfMwWMnkbq9ckzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057078833902-q9ooqib7i1ed85b5uld8hbma4803f3uh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
