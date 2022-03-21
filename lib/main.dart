@@ -1,6 +1,7 @@
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_mbti_store/onboarding.dart';
+import 'package:simple_mbti_store/ui/main_page.dart';
 // MBTI class를 하나 만들어두면 편하겠네요.
 // MBTI, 속성
 // (예시)
@@ -44,20 +45,34 @@ class AppListPage extends StatelessWidget {
           child: Column(
             children: [
               ElevatedButton(
+                onPressed: () {
+                  goToPage(context, Onboarding());
+                },
+                child: Text("onboading"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // TODO implemented.
+                },
+                child: Text("login"),
+              ),
+              ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => Onboarding()),
-                    );
+                    goToPage(context, MainPage());
                   },
-                  child: Text("onboading")),
-              ElevatedButton(onPressed: () {}, child: Text("login")),
-              ElevatedButton(onPressed: () {}, child: Text("main")),
+                  child: Text("main")),
               ElevatedButton(onPressed: () {}, child: Text("my page")),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  void goToPage(BuildContext context, Widget page) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => page),
     );
   }
 }
