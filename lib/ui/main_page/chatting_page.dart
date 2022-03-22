@@ -144,7 +144,7 @@ class _ChattingPageState extends State<ChattingPage> {
     );
   }
 
-  // TODO(hyuem) : not only color but also other properties should changed by myId
+  // TODO(hyuem) : not only color but also other properties should be changed by myId.
   Color setMessageBackGroundColorByMyUserId(Message message, String myId,
       Color myMessageColor, Color yourMessageColor) {
     // My message
