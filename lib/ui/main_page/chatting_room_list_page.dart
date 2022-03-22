@@ -38,12 +38,13 @@ class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
                   );
                 }
                 int length = documents.length;
+
                 // for debugging
-                documents.forEach(
-                  (s) {
-                    print(s.data());
-                  },
-                );
+                // documents.forEach(
+                //   (s) {
+                //     print(s.data());
+                //   },
+                // );
 
                 return ListView.builder(
                   shrinkWrap: true,
