@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_mbti_store/ui/main_page/chatting_page.dart';
+import 'package:simple_mbti_store/ui/main_page/chatting_room_list_page.dart';
 import 'package:simple_mbti_store/ui/main_page/map.dart';
 import 'package:simple_mbti_store/ui/main_page/recommendation.dart';
 
@@ -13,14 +14,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
 
-  // final Map<S pageNameList = ["list", "chatting", "map"];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
-
-        
         IconButton(
           icon: Icon(Icons.person),
           onPressed: () {},
@@ -30,7 +27,7 @@ class _MainPageState extends State<MainPage> {
         index: currentIndex,
         children: [
           RecommendationPage(),
-          ChattingPage(),
+          ChattingRoomListPage(),
           MapPage(),
         ],
       ),

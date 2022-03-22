@@ -37,6 +37,8 @@ class ChattingRepository {
   }
 
   Future<QuerySnapshot> readChattingRooms(String myId) async {
+    CollectionReference<Map<String, dynamic>> messages =
+        _chattingRoomCollection.doc().collection("messages");
     var idFromQuery = await _chattingRoomCollection
         .where(FirestoreConstants.idFrom, isEqualTo: myId)
         .get();

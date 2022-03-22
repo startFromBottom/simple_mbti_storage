@@ -6,9 +6,9 @@ import 'package:simple_mbti_store/repository/chatting_repository.dart';
 class ChattingService extends ChangeNotifier {
   final chattingRepository = ChattingRepository();
 
-  void createChattingRoom(String myId, String yourId) {
+  void createChattingRoom(String myId, String yourId, String createdAt) {
     chattingRepository
-        .createChattingRoom(ChattingRoom.getInstance(myId, yourId));
+        .createChattingRoom(ChattingRoom.getInstance(myId, yourId, createdAt));
     notifyListeners();
   }
 
@@ -21,7 +21,12 @@ class ChattingService extends ChangeNotifier {
     return chattingRepository.readMessagesStream(chattingRoomId);
   }
 
-  Future<QuerySnapshot> readChattingRooms(String myId) {
+  Future<QuerySnapshot<Object?>>? readChattingRooms(String myId) {
     return chattingRepository.readChattingRooms(myId);
+  }
+
+  void deleteChattingRoom(String chattingRoomId) async {
+    chattingRepository.deleteChattingRoom(chattingRoomId);
+    notifyListeners();
   }
 }

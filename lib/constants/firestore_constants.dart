@@ -1,10 +1,11 @@
 class FirestoreConstants {
   static const chattingRoomsBucket = "chatting_rooms";
   static const messagesCollection = "messages";
-  // remove
-  static const chattingRoomId = "chatting_room_id";
+
+  static const chattingRoomId = "room_id";
   static const idFrom = "idFrom";
   static const idTo = "idTo";
+  static const createdAt = "createdAt";
 
   static const timestamp = "timestamp";
   static const content = "content";

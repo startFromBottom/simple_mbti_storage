@@ -6,23 +6,33 @@ import '../constants/firestore_constants.dart';
 class ChattingRoom {
   final String idFrom;
   final String idTo;
+  final String createdAt;
   late String? _chattingRoomId;
 
   ChattingRoom({
     required this.idFrom,
     required this.idTo,
+    required this.createdAt,
   });
 
-  factory ChattingRoom.getInstance(String idFrom, String idTo) {
-    return ChattingRoom(idFrom: idFrom, idTo: idTo);
+  factory ChattingRoom.getInstance(
+      String idFrom, String idTo, String createdAt) {
+    return ChattingRoom(idFrom: idFrom, idTo: idTo, createdAt: createdAt);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      FirestoreConstants.messagesCollection: null,
       FirestoreConstants.idFrom: idFrom,
       FirestoreConstants.idTo: idTo,
+      FirestoreConstants.chattingRoomId: _chattingRoomId,
     };
+  }
+
+  factory ChattingRoom.fromDocument(DocumentSnapshot doc) {
+    String idFrom = doc.get(FirestoreConstants.idFrom);
+    String idTo = doc.get(FirestoreConstants.idTo);
+    String createdAt = doc.get(FirestoreConstants.createdAt);
+    return ChattingRoom(idFrom: idFrom, idTo: idTo, createdAt: createdAt);
   }
 
   // TODO (hyuem) - is it thread safe?

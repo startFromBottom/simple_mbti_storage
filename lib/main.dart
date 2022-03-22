@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_mbti_store/onboarding.dart';
 import 'package:simple_mbti_store/service/chatting_service.dart';
 import 'package:simple_mbti_store/ui/main_page.dart';
+import 'package:simple_mbti_store/utils/widget_utils.dart';
 // MBTI class를 하나 만들어두면 편하겠네요.
 // MBTI, 속성
 // (예시)
@@ -78,13 +79,6 @@ class AppListPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void goToPage(BuildContext context, Widget page) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => page),
     );
   }
 }
