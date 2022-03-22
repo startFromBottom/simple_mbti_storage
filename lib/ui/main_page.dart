@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_mbti_store/ui/main_page/chatting.dart';
+import 'package:simple_mbti_store/ui/main_page/chatting_page.dart';
 import 'package:simple_mbti_store/ui/main_page/map.dart';
 import 'package:simple_mbti_store/ui/main_page/recommendation.dart';
 
@@ -19,6 +19,8 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
+
+        
         IconButton(
           icon: Icon(Icons.person),
           onPressed: () {},
