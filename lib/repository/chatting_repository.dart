@@ -52,15 +52,15 @@ class ChattingRepository {
     var mergedSnapshot = StreamGroup.merge([idFromSnapshot, idToSnapshot]);
 
     // for debugging
-    mergedSnapshot.forEach(
-      (s) {
-        s.docs.forEach(
-          (e) {
-            print(e.data());
-          },
-        );
-      },
-    );
+    // mergedSnapshot.forEach(
+    //   (s) {
+    //     s.docs.forEach(
+    //       (e) {
+    //         print(e.data());
+    //       },
+    //     );
+    //   },
+    // );
 
     return mergedSnapshot;
   }
