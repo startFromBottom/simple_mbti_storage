@@ -27,7 +27,7 @@ class _ChattingPageState extends State<ChattingPage> {
       // User.
 
       // for test
-
+      // TODO(hyuem) : user의 Service 객체로부터 받아오도록 수정.
       String myId = "1";
       String yourId = "2";
       String chattingRoomId = "1-2";

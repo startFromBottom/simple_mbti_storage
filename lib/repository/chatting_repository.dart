@@ -27,7 +27,6 @@ class ChattingRepository {
     });
   }
 
-  // 한 채팅룸에서
   Stream<QuerySnapshot<Object?>>? readMessagesStream(String chattingRoomId) {
     return _chattingRoomCollection
         .doc(chattingRoomId)
@@ -37,7 +36,6 @@ class ChattingRepository {
         .snapshots();
   }
 
-  // 모든 채팅 룸의 id들을 조회하여, 내 id를 포함하고 있는 채팅 룸을 뿌려주자.
   Future<QuerySnapshot> readChattingRooms(String myId) async {
     var idFromQuery = await _chattingRoomCollection
         .where(FirestoreConstants.idFrom, isEqualTo: myId)
