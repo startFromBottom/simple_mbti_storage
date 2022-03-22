@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_mbti_store/constants/color_constants.dart';
-import 'package:simple_mbti_store/model/chatting_rooms.dart';
+import 'package:simple_mbti_store/model/chatting_room_model.dart';
+import 'package:simple_mbti_store/model/message_model.dart';
 import 'package:simple_mbti_store/service/chatting_service.dart';
+import 'package:simple_mbti_store/ui/main_page/chatting_room_list_page.dart';
 import 'package:simple_mbti_store/utils/widget_utils.dart';
 
 /*
@@ -39,7 +41,7 @@ class _ChattingPageState extends State<ChattingPage> {
               ChattingService chattingService = context.read<ChattingService>();
               chattingService.deleteChattingRoom(chattingRoomId);
               // TODO(hyuem) : add popup page.
-              goToPage(context, ChattingPage());
+              goToPage(context, ChattingRoomListPage());
             },
             icon: Icon(Icons.delete),
           ),
@@ -89,7 +91,6 @@ class _ChattingPageState extends State<ChattingPage> {
                 ),
               ),
               Divider(height: 1),
-
               Expanded(
                 child: StreamBuilder<QuerySnapshot>(
                   stream: chattingService.readMessagesStream(chattingRoomId),
@@ -101,6 +102,10 @@ class _ChattingPageState extends State<ChattingPage> {
                         child: Text("비어 있는 텍스트"),
                       );
                     }
+
+                    int length = documents.length;
+                    print("messages length === $length");
+
                     return ListView.builder(
                         itemCount: documents.length,
                         itemBuilder: (context, index) {
@@ -131,12 +136,7 @@ class _ChattingPageState extends State<ChattingPage> {
                         });
                   },
                 ),
-              )
-
-              //
-              // Expanded(child: StreamBuilder<QuerySnapshot>(
-              //   stream: c,
-              // ),)
+              ),
             ],
           );
         }),

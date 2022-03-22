@@ -1,6 +1,8 @@
+import 'package:async/async.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:simple_mbti_store/constants/firestore_constants.dart';
-import 'package:simple_mbti_store/model/chatting_rooms.dart';
+import 'package:simple_mbti_store/model/chatting_room_model.dart';
+import 'package:simple_mbti_store/model/message_model.dart';
 
 // TODO(hyuem) : check logic with test codes
 class ChattingRepository {
@@ -37,25 +39,48 @@ class ChattingRepository {
         .snapshots();
   }
 
-  Future<QuerySnapshot> readChattingRooms(String myId) async {
-    CollectionReference<Map<String, dynamic>> messages =
-        _chattingRoomCollection.doc().collection("messages");
-    var idFromQuery = await _chattingRoomCollection
+  Stream<QuerySnapshot<Map<String, dynamic>?>>? readChattingRoomsStream(
+      String myId) {
+    var idFromSnapshot = _chattingRoomCollection
         .where(FirestoreConstants.idFrom, isEqualTo: myId)
-        .get();
+        .snapshots();
 
-    var idToQuery = await _chattingRoomCollection
+    var idToSnapshot = _chattingRoomCollection
         .where(FirestoreConstants.idTo, isEqualTo: myId)
-        .get();
+        .snapshots();
 
-    idFromQuery.docs.addAll(idToQuery.docs);
+    var mergedSnapshot = StreamGroup.merge([idFromSnapshot, idToSnapshot]);
 
-    return idFromQuery;
+    // for debugging
+    mergedSnapshot.forEach(
+      (s) {
+        s.docs.forEach(
+          (e) {
+            print(e.data());
+          },
+        );
+      },
+    );
+
+    return mergedSnapshot;
   }
 
   // update - not supported yet.
 
   void deleteChattingRoom(String chattingRoomId) async {
+    // 1. delete messages subcollection.
+    final batch = FirebaseFirestore.instance.batch();
+    final messageCollection = _chattingRoomCollection
+        .doc(chattingRoomId)
+        .collection(FirestoreConstants.messagesCollection);
+    var snapshots = await messageCollection.get();
+
+    for (var doc in snapshots.docs) {
+      batch.delete(doc.reference);
+    }
+    await batch.commit();
+
+    // 2. delete ohter field.
     await _chattingRoomCollection.doc(chattingRoomId).delete();
   }
 }

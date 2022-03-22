@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_mbti_store/model/chatting_rooms.dart';
+import 'package:simple_mbti_store/model/chatting_room_model.dart';
 import 'package:simple_mbti_store/service/chatting_service.dart';
 import 'package:simple_mbti_store/ui/main_page/chatting_page.dart';
 import 'package:simple_mbti_store/utils/widget_utils.dart';
@@ -27,16 +27,19 @@ class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
       return Column(
         children: [
           Expanded(
-            child: FutureBuilder<QuerySnapshot>(
-              future: chattingService.readChattingRooms(myId),
+            child: StreamBuilder<QuerySnapshot>(
+              stream: chattingService.readChattingRoomsStream(myId),
               builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
                 final documents = snapshot.data?.docs ?? [];
-                if (documents.isEmpty) {
+                if (snapshot.data == null || documents.isEmpty) {
                   return Center(
                     child: Text("no chatting rooms"),
                   );
                 }
+                int length = documents.length;
+                print("documents length === $length");
+
                 return ListView.builder(
                   shrinkWrap: true,
                   itemCount: documents.length,
