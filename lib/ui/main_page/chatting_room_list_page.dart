@@ -38,7 +38,12 @@ class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
                   );
                 }
                 int length = documents.length;
-                print("documents length === $length");
+                // for debugging
+                documents.forEach(
+                  (s) {
+                    print(s.data());
+                  },
+                );
 
                 return ListView.builder(
                   shrinkWrap: true,
