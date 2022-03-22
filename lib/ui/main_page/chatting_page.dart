@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_mbti_store/constants/color_constants.dart';
 import 'package:simple_mbti_store/model/chatting_rooms.dart';
 import 'package:simple_mbti_store/service/chatting_service.dart';
+import 'package:simple_mbti_store/utils/widget_utils.dart';
 
 /*
  1:1 채팅방 내부.
@@ -24,7 +25,7 @@ class _ChattingPageState extends State<ChattingPage> {
   Widget build(BuildContext context) {
     // User.
     // for test
-    // TODO(hyuem) : user의 Service 객체로부터 받아오도록 수정.
+    // TODO(hyuem) : get User data from firebase.
     String myId = "1";
     String yourId = "2";
     String chattingRoomId = "1-2";
@@ -35,9 +36,10 @@ class _ChattingPageState extends State<ChattingPage> {
         actions: [
           IconButton(
             onPressed: () {
-              // 채팅방 삭제
               ChattingService chattingService = context.read<ChattingService>();
               chattingService.deleteChattingRoom(chattingRoomId);
+              // TODO(hyuem) : add popup page.
+              goToPage(context, ChattingPage());
             },
             icon: Icon(Icons.delete),
           ),
@@ -61,7 +63,7 @@ class _ChattingPageState extends State<ChattingPage> {
                       ),
                     ),
 
-                    // 추가 버튼
+                    // add button
                     ElevatedButton(
                       child: Icon(Icons.add),
                       onPressed: () {
@@ -75,7 +77,7 @@ class _ChattingPageState extends State<ChattingPage> {
                               timestamp: DateTime.now()
                                   .millisecondsSinceEpoch
                                   .toString(),
-                              // TODO(hyuem) : 이미지 확장 필요.
+                              // TODO(hyuem) : support image type also.
                               type: MessageType.text,
                             ),
                           );
@@ -104,7 +106,7 @@ class _ChattingPageState extends State<ChattingPage> {
                         itemBuilder: (context, index) {
                           DocumentSnapshot? doc = documents[index];
                           Message message = Message.fromDocument(doc);
-                          // TODO(hyuem) : text 뿐만 아니라 이미지도 커버 가능하도록!
+                          // TODO(hyuem) : support image type also.
                           return Container(
                             child: Text(
                               message.content,
@@ -115,7 +117,11 @@ class _ChattingPageState extends State<ChattingPage> {
                                 vertical: 15, horizontal: 10),
                             width: 200,
                             decoration: BoxDecoration(
-                                color: ColorConstants.greyColor,
+                                color: setMessageBackGroundColorByMyUserId(
+                                    message,
+                                    myId,
+                                    Colors.blueGrey,
+                                    Colors.lightGreen),
                                 borderRadius: BorderRadius.circular(8)),
                             margin: EdgeInsets.only(
                                 // bottom: isLastMessageRight(index) ? 20 : 10,
@@ -136,5 +142,16 @@ class _ChattingPageState extends State<ChattingPage> {
         }),
       ),
     );
+  }
+
+  // TODO(hyuem) : not only color but also other properties should changed by myId
+  Color setMessageBackGroundColorByMyUserId(Message message, String myId,
+      Color myMessageColor, Color yourMessageColor) {
+    // My message
+    if (message.idFrom == myId) {
+      return myMessageColor;
+    }
+    // Your message
+    return yourMessageColor;
   }
 }

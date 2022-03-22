@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:simple_mbti_store/constants/firestore_constants.dart';
 import 'package:simple_mbti_store/model/chatting_rooms.dart';
 
+// TODO(hyuem) : check logic with test codes
 class ChattingRepository {
   final int _limit = 30;
 

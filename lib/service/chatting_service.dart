@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_mbti_store/model/chatting_rooms.dart';
 import 'package:simple_mbti_store/repository/chatting_repository.dart';
 
+// TODO(hyuem) : check logic with test codes
 class ChattingService extends ChangeNotifier {
   final chattingRepository = ChattingRepository();
 

@@ -35,7 +35,7 @@ class ChattingRoom {
     return ChattingRoom(idFrom: idFrom, idTo: idTo, createdAt: createdAt);
   }
 
-  // TODO (hyuem) - is it thread safe?
+  // TODO(hyuem) need to check it is thread-safe.
   String getChattingRoomId() {
     if (_chattingRoomId != null) {
       return _chattingRoomId!;

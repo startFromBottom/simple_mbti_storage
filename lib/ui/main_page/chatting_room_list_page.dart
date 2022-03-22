@@ -18,9 +18,8 @@ class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
   Widget build(BuildContext context) {
     return Consumer<ChattingService>(
         builder: (context, chattingService, child) {
-      // User
       // for test
-      // TODO(hyuem) : user의 Service 객체로부터 받아오도록 수정.
+      // TODO(hyuem) : get User data from firebase.
       String myId = "1";
       String yourId = "2";
       String chattingRoomId = "1-2";
@@ -47,17 +46,16 @@ class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
 
                     String createdAt = chattingRoom.createdAt;
 
-                    // user의 이름, 사진 정보 가져오기
                     return GestureDetector(
                       child: ListTile(
-                        // ChattingRoom 의 idFrom 또는 idTo에 해당하는
+                        // use idFrom or idTo field.
                         leading: FlutterLogo(size: 72.0),
-                        // 유저의 이름
+                        //  user name
                         title: Text(
                           "Lucy",
                           style: TextStyle(color: Colors.black),
                         ),
-                        // 생성 시간 -> 마지막 업데이트된 시간으로 변경.
+                        // TODO(hyuem) as_is : createdAt -> to_be : lastUpdatedAt.
                         subtitle: Text(createdAt),
                       ),
                       onTap: () {
