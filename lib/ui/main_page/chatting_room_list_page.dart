@@ -44,14 +44,6 @@ class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
                     child: Text("no chatting rooms"),
                   );
                 }
-                int length = documentSnapshots.length;
-
-                // for debugging
-                documentSnapshots.forEach(
-                  (s) {
-                    print(s.data());
-                  },
-                );
 
                 return ListView.builder(
                   shrinkWrap: true,
