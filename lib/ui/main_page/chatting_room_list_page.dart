@@ -27,30 +27,37 @@ class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
       return Column(
         children: [
           Expanded(
-            child: StreamBuilder<QuerySnapshot>(
+            child: StreamBuilder<List<QuerySnapshot>>(
               stream: chattingService.readChattingRoomsStream(myId),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                final documents = snapshot.data?.docs ?? [];
-                if (snapshot.data == null || documents.isEmpty) {
+              builder: (context, snapshot) {
+                // TODO(hyuem) : need to refactor.
+                List<DocumentSnapshot> documentSnapshots = [];
+                List<QuerySnapshot<Object?>>? querySnapshots =
+                    snapshot.data?.toList();
+
+                for (var query in querySnapshots!) {
+                  documentSnapshots.addAll(query.docs);
+                }
+
+                if (snapshot.data == null || documentSnapshots.isEmpty) {
                   return Center(
                     child: Text("no chatting rooms"),
                   );
                 }
-                int length = documents.length;
+                int length = documentSnapshots.length;
 
                 // for debugging
-                // documents.forEach(
-                //   (s) {
-                //     print(s.data());
-                //   },
-                // );
+                documentSnapshots.forEach(
+                  (s) {
+                    print(s.data());
+                  },
+                );
 
                 return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: documents.length,
+                  itemCount: documentSnapshots.length,
                   itemBuilder: (context, index) {
-                    DocumentSnapshot? doc = documents[index];
+                    DocumentSnapshot? doc = documentSnapshots[index];
                     ChattingRoom chattingRoom = ChattingRoom.fromDocument(doc);
 
                     String createdAt = chattingRoom.createdAt;

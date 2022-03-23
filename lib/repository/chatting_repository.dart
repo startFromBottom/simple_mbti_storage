@@ -39,7 +39,7 @@ class ChattingRepository {
         .snapshots();
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>?>>? readChattingRoomsStream(
+  Stream<List<QuerySnapshot<Map<String, dynamic>>>> readChattingRoomsStream(
       String myId) {
     var idFromSnapshot = _chattingRoomCollection
         .where(FirestoreConstants.idFrom, isEqualTo: myId)
@@ -49,7 +49,7 @@ class ChattingRepository {
         .where(FirestoreConstants.idTo, isEqualTo: myId)
         .snapshots();
 
-    var mergedSnapshot = StreamGroup.merge([idFromSnapshot, idToSnapshot]);
+    var mergedSnapshot = StreamZip([idFromSnapshot, idToSnapshot]);
 
     // for debugging
     // mergedSnapshot.forEach(

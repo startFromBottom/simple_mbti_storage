@@ -24,7 +24,7 @@ class ChattingService extends ChangeNotifier {
     return chattingRepository.readMessagesStream(chattingRoomId);
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>?>>? readChattingRoomsStream(
+  Stream<List<QuerySnapshot<Map<String, dynamic>>>> readChattingRoomsStream(
       String myId) {
     return chattingRepository.readChattingRoomsStream(myId);
   }
