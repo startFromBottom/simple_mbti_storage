@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_mbti_store/model/chatting_room_model.dart';
-import 'package:simple_mbti_store/service/chatting_service.dart';
+import 'package:simple_mbti_store/service/chatting_room_service.dart';
 import 'package:simple_mbti_store/ui/main_page/chatting_page.dart';
 import 'package:simple_mbti_store/utils/widget_utils.dart';
 
@@ -16,7 +16,7 @@ class ChattingRoomListPage extends StatefulWidget {
 class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<ChattingService>(
+    return Consumer<ChattingRoomService>(
         builder: (context, chattingService, child) {
       // for test
       // TODO(hyuem) : get User data from firebase.
