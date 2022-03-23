@@ -5,7 +5,7 @@ import 'package:simple_mbti_store/constants/color_constants.dart';
 import 'package:simple_mbti_store/constants/route_constants.dart';
 import 'package:simple_mbti_store/model/chatting_room_model.dart';
 import 'package:simple_mbti_store/model/message_model.dart';
-import 'package:simple_mbti_store/service/chatting_service.dart';
+import 'package:simple_mbti_store/service/chatting_room_service.dart';
 import 'package:simple_mbti_store/ui/main_page/chatting_room_list_page.dart';
 import 'package:simple_mbti_store/ui/main_page/main_page.dart';
 import 'package:simple_mbti_store/utils/widget_utils.dart';
@@ -59,8 +59,8 @@ class _ChattingPageState extends State<ChattingPage> {
                       TextButton(
                         child: Text('네'),
                         onPressed: () {
-                          ChattingService chattingService =
-                              context.read<ChattingService>();
+                          ChattingRoomService chattingService =
+                              context.read<ChattingRoomService>();
                           // for debugging.
                           chattingService.deleteChattingRoom(chattingRoomId);
                           Navigator.pushNamed(context, RouteConstants.MainPage);
@@ -76,7 +76,7 @@ class _ChattingPageState extends State<ChattingPage> {
         ],
       ),
       body: SafeArea(
-        child: Consumer<ChattingService>(
+        child: Consumer<ChattingRoomService>(
             builder: (context, chattingService, child) {
           return Column(
             children: [

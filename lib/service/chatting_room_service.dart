@@ -3,11 +3,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_mbti_store/model/chatting_room_model.dart';
 import 'package:simple_mbti_store/model/message_model.dart';
-import 'package:simple_mbti_store/repository/chatting_repository.dart';
+import 'package:simple_mbti_store/repository/chatting_room_repository.dart';
 
 // TODO(hyuem) : check logic with test codes
-class ChattingService extends ChangeNotifier {
-  final chattingRepository = ChattingRepository();
+class ChattingRoomService extends ChangeNotifier {
+  final chattingRepository = ChattingRoomRepository();
 
   void createChattingRoom(String myId, String yourId, String createdAt) {
     chattingRepository

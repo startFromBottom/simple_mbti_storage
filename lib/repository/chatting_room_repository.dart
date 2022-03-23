@@ -5,7 +5,7 @@ import 'package:simple_mbti_store/model/chatting_room_model.dart';
 import 'package:simple_mbti_store/model/message_model.dart';
 
 // TODO(hyuem) : check logic with test codes
-class ChattingRepository {
+class ChattingRoomRepository {
   final int _limit = 30;
 
   final _chattingRoomCollection = FirebaseFirestore.instance
@@ -69,7 +69,7 @@ class ChattingRepository {
     }
     await batch.commit();
 
-    // 2. delete ohter field.
+    // 2. delete other field.
     await _chattingRoomCollection.doc(chattingRoomId).delete();
   }
 }
