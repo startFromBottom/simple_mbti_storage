@@ -51,17 +51,6 @@ class ChattingRepository {
 
     var mergedSnapshot = StreamZip([idFromSnapshot, idToSnapshot]);
 
-    // for debugging
-    // mergedSnapshot.forEach(
-    //   (s) {
-    //     s.docs.forEach(
-    //       (e) {
-    //         print(e.data());
-    //       },
-    //     );
-    //   },
-    // );
-
     return mergedSnapshot;
   }
 
