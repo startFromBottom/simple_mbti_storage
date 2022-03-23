@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        RouteConstants.MainPage: (context) => MainPage(),
+        RouteConstants.mainPage: (context) => MainPage(),
       },
       debugShowCheckedModeBanner: false,
       home: AppListPage(),

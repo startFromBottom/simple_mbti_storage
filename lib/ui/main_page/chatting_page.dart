@@ -6,9 +6,6 @@ import 'package:simple_mbti_store/constants/route_constants.dart';
 import 'package:simple_mbti_store/model/chatting_room_model.dart';
 import 'package:simple_mbti_store/model/message_model.dart';
 import 'package:simple_mbti_store/service/chatting_room_service.dart';
-import 'package:simple_mbti_store/ui/main_page/chatting_room_list_page.dart';
-import 'package:simple_mbti_store/ui/main_page/main_page.dart';
-import 'package:simple_mbti_store/utils/widget_utils.dart';
 
 /*
  1:1 채팅방 내부.
@@ -63,7 +60,7 @@ class _ChattingPageState extends State<ChattingPage> {
                               context.read<ChattingRoomService>();
                           // for debugging.
                           chattingService.deleteChattingRoom(chattingRoomId);
-                          Navigator.pushNamed(context, RouteConstants.MainPage);
+                          Navigator.pushNamed(context, RouteConstants.mainPage);
                         },
                       ),
                     ],

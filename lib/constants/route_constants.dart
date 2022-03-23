@@ -1,3 +1,3 @@
 class RouteConstants {
-  static const MainPage = "main_page";
+  static const mainPage = "main_page";
 }
