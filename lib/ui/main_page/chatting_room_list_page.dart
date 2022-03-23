@@ -35,8 +35,10 @@ class _ChattingRoomListPageState extends State<ChattingRoomListPage> {
                 List<QuerySnapshot<Object?>>? querySnapshots =
                     snapshot.data?.toList();
 
-                for (var query in querySnapshots!) {
-                  documentSnapshots.addAll(query.docs);
+                if (querySnapshots != null) {
+                  for (var query in querySnapshots) {
+                    documentSnapshots.addAll(query.docs);
+                  }
                 }
 
                 if (snapshot.data == null || documentSnapshots.isEmpty) {

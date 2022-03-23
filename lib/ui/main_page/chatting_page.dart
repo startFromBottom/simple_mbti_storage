@@ -2,10 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_mbti_store/constants/color_constants.dart';
+import 'package:simple_mbti_store/constants/route_constants.dart';
 import 'package:simple_mbti_store/model/chatting_room_model.dart';
 import 'package:simple_mbti_store/model/message_model.dart';
 import 'package:simple_mbti_store/service/chatting_service.dart';
 import 'package:simple_mbti_store/ui/main_page/chatting_room_list_page.dart';
+import 'package:simple_mbti_store/ui/main_page/main_page.dart';
 import 'package:simple_mbti_store/utils/widget_utils.dart';
 
 /*
@@ -38,10 +40,36 @@ class _ChattingPageState extends State<ChattingPage> {
         actions: [
           IconButton(
             onPressed: () {
-              ChattingService chattingService = context.read<ChattingService>();
-              chattingService.deleteChattingRoom(chattingRoomId);
               // TODO(hyuem) : add popup page.
-              goToPage(context, ChattingRoomListPage());
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (BuildContext context) {
+                  // TODO(hyuem) : extract widget.
+                  return AlertDialog(
+                    title: Text("채팅방 나가기"),
+                    content: Text("채팅방을 나가시겠습니까?"),
+                    actions: [
+                      TextButton(
+                        child: Text('아니오'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: Text('네'),
+                        onPressed: () {
+                          ChattingService chattingService =
+                              context.read<ChattingService>();
+                          // for debugging.
+                          chattingService.deleteChattingRoom(chattingRoomId);
+                          Navigator.pushNamed(context, RouteConstants.MainPage);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
             },
             icon: Icon(Icons.delete),
           ),
@@ -86,7 +114,7 @@ class _ChattingPageState extends State<ChattingPage> {
                           chatController.text = "";
                         }
                       },
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -103,37 +131,33 @@ class _ChattingPageState extends State<ChattingPage> {
                       );
                     }
 
-                    int length = documents.length;
-                    print("messages length === $length");
-
                     return ListView.builder(
-                        itemCount: documents.length,
-                        itemBuilder: (context, index) {
-                          DocumentSnapshot? doc = documents[index];
-                          Message message = Message.fromDocument(doc);
-                          // TODO(hyuem) : support image type also.
-                          return Container(
-                            child: Text(
-                              message.content,
-                              style:
-                                  TextStyle(color: ColorConstants.primaryColor),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 10),
-                            width: 200,
-                            decoration: BoxDecoration(
-                                color: setMessageBackGroundColorByMyUserId(
-                                    message,
-                                    myId,
-                                    Colors.blueGrey,
-                                    Colors.lightGreen),
-                                borderRadius: BorderRadius.circular(8)),
-                            margin: EdgeInsets.only(
-                                // bottom: isLastMessageRight(index) ? 20 : 10,
-                                bottom: 20,
-                                right: 10),
-                          );
-                        });
+                      itemCount: documents.length,
+                      itemBuilder: (context, index) {
+                        DocumentSnapshot? doc = documents[index];
+                        Message message = Message.fromDocument(doc);
+                        // TODO(hyuem) : support image type also.
+                        return Container(
+                          child: Text(
+                            message.content,
+                            style:
+                                TextStyle(color: ColorConstants.primaryColor),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 10),
+                          width: 200,
+                          decoration: BoxDecoration(
+                            color: setMessageBackGroundColorByMyUserId(message,
+                                myId, Colors.blueGrey, Colors.lightGreen),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          margin: EdgeInsets.only(
+                            bottom: 20,
+                            right: 10,
+                          ),
+                        );
+                      },
+                    );
                   },
                 ),
               ),
