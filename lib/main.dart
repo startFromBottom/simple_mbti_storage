@@ -1,7 +1,12 @@
 // import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_mbti_store/constants/route_constants.dart';
 import 'package:simple_mbti_store/onboarding.dart';
-import 'package:simple_mbti_store/ui/main_page.dart';
+import 'package:simple_mbti_store/service/chatting_room_service.dart';
+import 'package:simple_mbti_store/ui/main_page/main_page.dart';
+import 'package:simple_mbti_store/utils/widget_utils.dart';
 // MBTI class를 하나 만들어두면 편하겠네요.
 // MBTI, 속성
 // (예시)
@@ -14,9 +19,18 @@ import 'package:simple_mbti_store/ui/main_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // main 함수에서 async 사용하기 위함
-  // await Firebase.initializeApp(); // firebase 앱 시작
+  await Firebase.initializeApp(); // firebase 앱 시작
 
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ChattingRoomService(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,6 +39,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        RouteConstants.MainPage: (context) => MainPage(),
+      },
       debugShowCheckedModeBanner: false,
       home: AppListPage(),
     );
@@ -66,13 +84,6 @@ class AppListPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void goToPage(BuildContext context, Widget page) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => page),
     );
   }
 }
