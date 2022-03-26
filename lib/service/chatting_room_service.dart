@@ -7,30 +7,30 @@ import 'package:simple_mbti_store/repository/chatting_room_repository.dart';
 
 // TODO(hyuem) : check logic with test codes
 class ChattingRoomService extends ChangeNotifier {
-  final chattingRepository = ChattingRoomRepository();
+  final _chattingRepository = ChattingRoomRepository();
 
   void createChattingRoom(String myId, String yourId, String createdAt) {
-    chattingRepository
+    _chattingRepository
         .createChattingRoom(ChattingRoom.getInstance(myId, yourId, createdAt));
     notifyListeners();
   }
 
   void writeMessageInChattingRoom(String chattingRoomId, Message message) {
-    chattingRepository.writeMessageInChattingRoom(chattingRoomId, message);
+    _chattingRepository.writeMessageInChattingRoom(chattingRoomId, message);
     notifyListeners();
   }
 
   Stream<QuerySnapshot<Object?>>? readMessagesStream(String chattingRoomId) {
-    return chattingRepository.readMessagesStream(chattingRoomId);
+    return _chattingRepository.readMessagesStream(chattingRoomId);
   }
 
   Stream<List<QuerySnapshot<Map<String, dynamic>>>> readChattingRoomsStream(
       String myId) {
-    return chattingRepository.readChattingRoomsStream(myId);
+    return _chattingRepository.readChattingRoomsStream(myId);
   }
 
   void deleteChattingRoom(String chattingRoomId) async {
-    chattingRepository.deleteChattingRoom(chattingRoomId);
+    _chattingRepository.deleteChattingRoom(chattingRoomId);
     notifyListeners();
   }
 }

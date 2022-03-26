@@ -1,5 +1,7 @@
 class FirestoreConstants {
   static const chattingRoomsBucket = "chatting_rooms";
+  static const mbtiUserInfoBucket = "mbti_user_info";
+
   static const messagesCollection = "messages";
 
   // chatting_rooms fields.
@@ -15,6 +17,9 @@ class FirestoreConstants {
 
   // Mbti User Info fields.
   static const uid = "uid";
+  static const nickname = "nickname";
+  static const gender = "gender";
   static const myMbti = "mbti";
-  static const preferredMbti = "preferredMbti";
+  static const preferredMbti = "preferred_mbti";
+  static const selfIntroduction = "self_introduction";
 }

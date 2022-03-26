@@ -41,6 +41,7 @@ dependencies:
   mockito: ^5.1.0
   async: ^2.8.2
   back_button_interceptor: ^5.0.2
+  multiple_stream_builder: ^2.0.0
 
 dev_dependencies:
   flutter_test:
